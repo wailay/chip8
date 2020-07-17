@@ -172,7 +172,7 @@ int main(int argc, char **argv)
                 //reset
                 if (event.key.code == sf::Keyboard::Home)
                 {
-                    dbgr.next();
+                    chip8->reset();
                 }
             }
         }

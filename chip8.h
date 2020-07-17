@@ -24,6 +24,7 @@ public:
     void load(const char* ROM);
     void pollKey(sf::RenderWindow &window, sf::Event &event);
     void cycle();
+    void reset();
 
 
     std::map<sf::Keyboard::Key, int> keyMap;

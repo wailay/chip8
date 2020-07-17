@@ -58,6 +58,14 @@ void C8::init()
     std::srand(std::time(0));
 }
 
+void C8::reset() {
+    pc_ = 0x200;
+    sp_ = -1;
+    
+    delay_timer = 0x00;
+    sound_timer = 0x00;
+    isKeyPressed = false;
+}
 void C8::cycle(){
     fetch();
     decode();

@@ -44,7 +44,7 @@ void Debugger::draw_memory_debug() {
 
         if (i == currentInstruction) {
             sf::RectangleShape rect(sf::Vector2f(300.f, 16.f));
-            rect.setFillColor(sf::Color(255, 107, 105, 150));
+            rect.setFillColor(sf::Color(255, 107, 105, 100));
             window.draw(rect, instructionText.getTransform());
         }
     }
@@ -120,29 +120,37 @@ void Debugger::draw_common_reg() {
 
 void Debugger::draw_info() {
     std::stringstream stream;
-    stream << "############### CHIP8 INTERPRETER ###############" << "\n";
-    stream << "                                                 " << "\n";
-    stream << "                     USAGE                       " << "\n";
-    stream << " Backspace   Set/Unset a breakpoint from the     " << "\n";
-    stream << "             current instruction being executed  " << "\n";
-    stream << "                                                 " << "\n";
-    stream << " Down arrow  Move to the next instruction        " << "\n";
-    stream << "                                                 " << "\n";
-    stream << " PageDown    Increase clock frequency            " << "\n";
-    stream << " PageUp      Decrease clock frequency            " << "\n";
-    stream << "                                                 " << "\n";
-    stream << "             Keyboard Layout                     " << "\n";
-    stream << "                                                 " << "\n";
-    stream << "            1 2 3 C     1 2 3 4                  " << "\n";
-    stream << "            4 5 6 D     Q W E R                  " << "\n";
-    stream << "            7 8 9 E     A S D F                  " << "\n";
-    stream << "            A 0 B F     Z X C V                  " << "\n";
-    stream << "                                                 " << "\n";
-    stream << "#################################################" << "\n";
+    stream << "############################# CHIP8 INTERPRETER ############################" << "\n";
+    stream << "                                                                            " << "\n";
+    stream << "                     USAGE                                                  " << "\n";
+    stream << "                                                                            " << "\n";
+    stream << " Backspace   Set/Unset a breakpoint from the                                " << "\n";
+    stream << "             current instruction being executed          Keyboard Layout    " << "\n";
+    stream << "                                                                            " << "\n";
+    stream << " Down arrow  Move to the next instruction              1 2 3 C      1 2 3 4 " << "\n";
+    stream << "                                                       4 5 6 D  ->  Q W E R " << "\n";
+    stream << " PageDown    Increase clock frequency                  7 8 9 E      A S D F " << "\n";
+    stream << " PageUp      Decrease clock frequency                  A 0 B F      Z X C V " << "\n";
+    stream << "                                                                            " << "\n";
+    stream << " Home        Reset the program                                              " << "\n";
+    stream << "                                                                            " << "\n";
+    stream << "############################################################################" << "\n";
 
     sf::Text text(stream.str(), font, fontSize);
     text.setPosition(10.f, 330.f);
     window.draw(text);
+
+    //draw breakpoint info 
+    if (breakpoint) {
+        stream.str("");
+        stream << "*Breakpoint set*";
+        text.setString(stream.str());
+        text.setFillColor(sf::Color::Red);
+        text.setPosition(500.f, 330.f);
+        window.draw(text);
+    }
+    
+
 }
 
 void Debugger::next() {
