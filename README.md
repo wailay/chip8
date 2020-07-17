@@ -10,5 +10,6 @@ Used [SFML](https://www.sfml-dev.org/) Graphics library for the window drawing, 
 Usage 
 
 `make`
+
 `./chip8 <ROM-NAME>`
 
