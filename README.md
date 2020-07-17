@@ -1,5 +1,5 @@
 # chip8
-Yet another chip8 emulator just for fun.
+Yet another chip8 interpreter just for fun.
 
 ![ibm ex](s1.png)
 
