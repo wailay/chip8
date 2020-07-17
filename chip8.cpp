@@ -82,11 +82,10 @@ void C8::convert_screen(unsigned char *pixels, int multiplier) {
         }
 }
 
-void C8::pollKey(sf::RenderWindow &window)
+void C8::pollKey(sf::RenderWindow &window, sf::Event &event)
 {
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
+    
+    
         //if keypressed update keyboard
         if (event.type == sf::Event::KeyPressed)
         {
@@ -112,7 +111,7 @@ void C8::pollKey(sf::RenderWindow &window)
             window.close();
             exit(1);
         }
-    }
+    
 }
 void C8::decode()
 {
@@ -420,9 +419,11 @@ void C8::load(const char *ROM)
     rom_bin_file.open(ROM, std::ios::binary | std::ios::ate);
 
     std::streampos size;
+    
     if (rom_bin_file.is_open())
     {
         size = rom_bin_file.tellg();
+        loaded_program_size = size;
         temp_buff = new char[size];
         rom_bin_file.seekg(0, std::ios::beg);
         rom_bin_file.read(temp_buff, size);
@@ -434,5 +435,8 @@ void C8::load(const char *ROM)
 
         delete[] temp_buff;
         rom_bin_file.close();
+    } else {
+        fprintf(stderr, "Rom not found \n");
+        exit(0);
     }
 }

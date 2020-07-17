@@ -2,7 +2,7 @@ CC=g++
 TARGET=chip8
 SOURCES=$(wildcard *.cpp)
 OBJFILES=$(SOURCES:.cpp=.o)
-CPPFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
+CPPFLAGS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 .PHONY : clean
 
